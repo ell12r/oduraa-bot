@@ -1097,24 +1097,21 @@ def read_aloud_with_gTTS(chat_id, text):
         print(f"Error sending or deleting audio message: {e}")        
     
         
-# Webhook route definition
-@app.route('/' + bot_token, methods=['POST'])
-def webhook():
-    update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
-    bot.process_new_updates([update])
-    return '', 200      
-
-
-# Code to run the bot below
-#########################################################################################################################################################
-
-WEBHOOK_URL = 'https://oduraa-boto-e54197505161.herokuapp.com'  
+# Webhook URL
+WEBHOOK_URL = 'https://oduraa.netlify.app/'
 
 # Set the webhook for the bot
 bot.remove_webhook()
 bot.set_webhook(url=WEBHOOK_URL + '/' + bot_token)
 
-if __name__ == '__main__':
+# Handle webhook requests
+@app.route('/' + bot_token, methods=['POST'])
+def webhook():
+    update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
+    bot.process_new_updates([update])
+    return '', 200
 
+# Main function
+if __name__ == '__main__':
     # Run the Flask app
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
