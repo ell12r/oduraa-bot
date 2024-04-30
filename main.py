@@ -1098,7 +1098,7 @@ def read_aloud_with_gTTS(chat_id, text):
     
         
 # Webhook URL
-WEBHOOK_URL = 'https://oduraa.netlify.app/'
+WEBHOOK_URL = 'https://oduraaa.netlify.app/'
 
 # Set the webhook for the bot
 bot.remove_webhook()
